@@ -1,4 +1,5 @@
-name=Gunshot Victim Trait
-id=GunshotVictimTrait
-description=Allows you to start the game as a Gunshot Victim, either Minor or Major.
+name=Gunshot Victim Traits
+id=GunshotVictimTraits
+description= Adds 2 traits to the game about being a gunshot victim, both in minor and severe form.
 poster=poster.png
+icon=icon.png

@@ -1,5 +1,5 @@
 version=1
-title=Gunshot Victim Trait
-description= Allows you to start the game as a Gunshot Victim, i guess.
+title=Gunshot Victim Traits
+description= Adds 2 traits to the game about being a gunshot victim, both in minor and severe form.
 tags=
 visibility=public
