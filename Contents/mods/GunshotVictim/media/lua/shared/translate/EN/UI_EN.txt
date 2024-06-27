@@ -1,0 +1,26 @@
+UI_EN{
+    UI_GunshotVictim = "Gunshot Victim",
+    UI_GunshotVictimMinor = "Minor Gunshot Victim",
+    UI_GunshotVictimMajor = "Severe Gunshot Victim",
+    UI_Gunshot_Victim_Minor_Desc_Point1 = "You had been shot in few spots before the the world turned to hell.",
+    UI_Gunshot_Victim_Minor_Desc_Point2 = "You will be panicked when using firearms",
+    UI_Gunshot_Victim_Minor_Desc_Point3 = "Your wounds will be bandaged, but bullets will still remain in your body.",
+
+    UI_Gunshot_Victim_Major_Desc_Point1 = "You got into a really hated gunfight, somehow you're still alive dispite your injuries.",
+    UI_Gunshot_Victim_Major_Desc_Point2 = "You refuse to wield any firearms, unless you consume beta-blockers.",
+    UI_Gunshot_Victim_Major_Desc_Point3 = "Your wounds will be bandaged, but bullets will still remain in your body.",
+
+    UI_Gunshot_Victim_Tweezer_Start = "Dispite your pain, you managed to pick up tweezers.",
+
+
+    UI_Gun_Refusal_1 = "I can't do this...",
+    UI_Gun_Refusal_2 = "I... i can't...",
+    UI_Gun_Refusal_3 = "My hands are shaking for picking this up...",
+    UI_Gun_Refusal_4 = "No...",
+    UI_Gun_Refusal_5 = "This weapon is making me sick...",
+    UI_Gun_Refusal_6 = "I don't want to use this...",
+    UI_Gun_Refusal_7 = "ARGHHH!",
+    UI_Gun_Refusal_8 = "AHHH!",
+    UI_Gun_Refusal_9 = "*heavy shaking*",
+    UI_Gun_Refusal_10 = "*panting*",
+}
