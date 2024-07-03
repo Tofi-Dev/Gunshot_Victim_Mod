@@ -88,6 +88,24 @@ local function GiveGunShotWounds(_player)
     end
 end
 
+local function Check_for_Level()
+    local player = getPlayer()
+    if player:HasTrait("gunshot_victim_major") then
+        if player:getPerkLevel(Perks.Aiming) >= 5 and player:getPerkLevel(Perks.Reloading) >= 5 then
+            player:getTraits():remove("gunshot_victim_major")
+            player:getTraits():add("gunshot_victim_minor")
+            player:Say(getText("UI_Maybe_I_Can_Do_This"))
+        end
+    end
+    if player:HasTrait("gunshot_victim_minor") then
+        if player:getPerkLevel(Perks.Aiming) >= 7 and player:getPerkLevel(Perks.Reloading) >= 7 then
+            player:getTraits():remove("gunshot_victim_minor")
+            player:Say(getText("UI_Got_Used_To"))
+        end
+    end
+end
+
 Events.OnTick.Add(GuninHandDetection)
+Events.EveryOneMinute.Add(Check_for_Level)
 --Events.OnEquipPrimary.Add(onGunEquip)
 Events.OnNewGame.Add(GiveGunShotWounds)

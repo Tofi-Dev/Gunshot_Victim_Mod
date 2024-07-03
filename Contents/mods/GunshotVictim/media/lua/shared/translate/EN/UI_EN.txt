@@ -11,6 +11,8 @@ UI_EN{
     UI_Gunshot_Victim_Major_Desc_Point3 = "Your wounds will be bandaged, but bullets will still remain in your body.",
 
     UI_Gunshot_Victim_Tweezer_Start = "Dispite your pain, you managed to pick up tweezers.",
+    UI_Gunshot_Victim_Level_Requirement_1 = "You be tired down to Minor Gunshot Victim when reaching Aiming and Reloading Level 5.",
+    UI_Gunshot_Victim_Level_Requirement_2 = "You can lose the effects of this trait when reaching Aiming and Reloading Level 7.",
 
 
     UI_Gun_Refusal_1 = "I can't do this...",
@@ -23,4 +25,7 @@ UI_EN{
     UI_Gun_Refusal_8 = "AHHH!",
     UI_Gun_Refusal_9 = "*heavy shaking*",
     UI_Gun_Refusal_10 = "*panting*",
+
+    UI_Maybe_I_Can_Do_This = "Maybe I can do this...",
+    UI_Got_Used_To = "I got used to this...",
 }
