@@ -1,19 +1,29 @@
+local getPlayer = getPlayer
+local getSoundManager = getSoundManager
+
 local function GuninHandDetection()
+    local sound_manager = getSoundManager()
+    
     local player = getPlayer()
-    if player:getPrimaryHandItem() == nil then
+    if player == nil or player:getPrimaryHandItem() == nil then
         return
     end
+
+    local stats = player:getStats()
+    local prim_hand_item = player:getPrimaryHandItem()
+    
+    if prim_hand_item == nil then return end
 	
     if player:HasTrait("gunshot_victim_minor") then
         if player:isDead() == false then
-            if player:getPrimaryHandItem():getSubCategory() == "Firearm" then
+            if prim_hand_item:getSubCategory() == "Firearm" then
                 if player:getBetaEffect() == 0 then
                     -- Calculate Deltatime for Panic
                     local delta = getGameTime():getTimeDelta()
 
                     -- Set Panic
-                    local panic = player:getStats():getPanic() + 10 * delta
-                    player:getStats():setPanic(panic)
+                    local panic = stats:getPanic() + 10 * delta
+                    stats:setPanic(panic)
                 end
             end
         end
@@ -21,30 +31,31 @@ local function GuninHandDetection()
 
     if player:HasTrait("gunshot_victim_major") then
         if player:isDead() == false then
-            if player:getPrimaryHandItem():getSubCategory() == "Firearm" then
+            if prim_hand_item:getSubCategory() == "Firearm" then
                 if player:getBetaDelta() <= 0.1 then
                     player:dropHandItems()
-                    player:getStats():setPanic(100)
+                    stats:setPanic(100)
                     if player:isFemale() then
-                        getSoundManager():PlaySound("female_heavybreathpanic", false, 5):setVolume(0.035)
+                        sound_manager:PlaySound("female_heavybreathpanic", false, 5):setVolume(0.035)
                     else
-                        getSoundManager():PlaySound("male_heavybreathpanic", false, 5):setVolume(0.035)
+                        sound_manager:PlaySound("male_heavybreathpanic", false, 5):setVolume(0.035)
                     end
                     player:Say(getText(getText("UI_Gun_Refusal_")..ZombRand(1,10)))
                 else
                     local delta = getGameTime():getTimeDelta()
                     -- Dispite the betablockers, it doesn't mean the character is immune to gun panic.
-                    local stress = player:getStats():getStress() + 5 * delta
-                    player:getStats():setStress(stress)
+                    local stress = stats:getStress() + 5 * delta
+                    stats:setStress(stress)
                 end
             end
         end
     end
 end
+
 -- Executes when player starts the game with Gunshot Victim, either Minor or Major
-local function GiveGunShotWounds(_player)
-    -- Get the player and their Body Damage
-    local player = _player
+local function GiveGunShotWounds(player)
+    if player == nil then return end
+    
     local bodydamage = player:getBodyDamage()
     
     -- Does the player have the Minor Gunshot Victim trait?
@@ -90,16 +101,19 @@ end
 
 local function Check_for_Level()
     local player = getPlayer()
+    if player == nil then return end
+
+    local traits = player:getTraits()    
     if player:HasTrait("gunshot_victim_major") then
         if player:getPerkLevel(Perks.Aiming) >= 5 and player:getPerkLevel(Perks.Reloading) >= 5 then
-            player:getTraits():remove("gunshot_victim_major")
-            player:getTraits():add("gunshot_victim_minor")
+            traits:remove("gunshot_victim_major")
+            traits:add("gunshot_victim_minor")
             player:Say(getText("UI_Maybe_I_Can_Do_This"))
         end
     end
     if player:HasTrait("gunshot_victim_minor") then
         if player:getPerkLevel(Perks.Aiming) >= 7 and player:getPerkLevel(Perks.Reloading) >= 7 then
-            player:getTraits():remove("gunshot_victim_minor")
+            traits:remove("gunshot_victim_minor")
             player:Say(getText("UI_Got_Used_To"))
         end
     end
