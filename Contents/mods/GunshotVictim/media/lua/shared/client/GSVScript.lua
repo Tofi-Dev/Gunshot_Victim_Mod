@@ -53,8 +53,7 @@ local function GuninHandDetection()
 end
 
 -- Executes when player starts the game with Gunshot Victim, either Minor or Major
-local function GiveGunShotWounds(_player)
-    local player = _player
+local function GiveGunShotWounds(player)
     if player == nil then return end
     
     local bodydamage = player:getBodyDamage()
