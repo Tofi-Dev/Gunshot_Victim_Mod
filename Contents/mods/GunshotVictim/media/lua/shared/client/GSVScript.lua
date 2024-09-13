@@ -1,6 +1,6 @@
 local function GuninHandDetection()
     local player = getPlayer()
-    if player:getPrimaryHandItem() == nil then
+    if player == nil or player:getPrimaryHandItem() == nil then
         return
     end
 	
@@ -41,10 +41,12 @@ local function GuninHandDetection()
         end
     end
 end
+
 -- Executes when player starts the game with Gunshot Victim, either Minor or Major
 local function GiveGunShotWounds(_player)
-    -- Get the player and their Body Damage
     local player = _player
+    if player == nil then return end
+    
     local bodydamage = player:getBodyDamage()
     
     -- Does the player have the Minor Gunshot Victim trait?
@@ -90,16 +92,19 @@ end
 
 local function Check_for_Level()
     local player = getPlayer()
+    if player == nil then return end
+
+    local traits = player:getTraits()    
     if player:HasTrait("gunshot_victim_major") then
         if player:getPerkLevel(Perks.Aiming) >= 5 and player:getPerkLevel(Perks.Reloading) >= 5 then
-            player:getTraits():remove("gunshot_victim_major")
-            player:getTraits():add("gunshot_victim_minor")
+            traits:remove("gunshot_victim_major")
+            traits:add("gunshot_victim_minor")
             player:Say(getText("UI_Maybe_I_Can_Do_This"))
         end
     end
     if player:HasTrait("gunshot_victim_minor") then
         if player:getPerkLevel(Perks.Aiming) >= 7 and player:getPerkLevel(Perks.Reloading) >= 7 then
-            player:getTraits():remove("gunshot_victim_minor")
+            traits:remove("gunshot_victim_minor")
             player:Say(getText("UI_Got_Used_To"))
         end
     end
